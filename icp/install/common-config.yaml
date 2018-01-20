@@ -1,0 +1,11 @@
+
+# The following contains additional configuration of config.yaml
+
+calico_ip_autodetection_method: interface=eth0
+
+ansible_user: root
+ansible_ssh_common_args: "-oPubkeyAuthentication=no"
+
+# The following contains the generated configuration of config.yaml. e.g. ansible_ssh_pass, cluster_access_ip, proxy_access_ip
+
+

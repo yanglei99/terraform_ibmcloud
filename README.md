@@ -21,16 +21,16 @@ Generate a `do-key` keypair (with an empty passphrase):
 
 ### Basic Scenario
 
-* [Provision VM](basic/vm/basic.tf). 
+* [VM Instance](basic/vm/basic.tf). 
 
 ### Data Center Platform
 
-* [ICP. IBM Cloud Private](icp/README.md). 
+* [ICP, IBM Cloud Private](icp/README.md). 
 
 ### Verified
 
 * Terraform: 0.9.8
-* Terraform IBM Provider:0.7.0
+* Terraform IBM Provider: 0.7.0
 
 
 ### Useful Terraform Command

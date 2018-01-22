@@ -57,4 +57,6 @@ For local `kubectl`, download kubeconfig from the location defined in output aft
 ### Known issues and workaround
 
 * Currently, the script only supports ICP CE. 
+* Federation DNS service not working.
+
 

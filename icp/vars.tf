@@ -148,6 +148,11 @@ variable "enable_iptables" {
 }
 
 
+variable "enable_federation" {
+  description = "Enable federation"
+  default = "false"
+}
+
 variable "icp_admin_password" {
   description = "default admin password"
   default = "admin"

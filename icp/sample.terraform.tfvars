@@ -15,6 +15,9 @@ cluster_name = "myicp"
 install_docker = true
 root_passwd = "mypassw0rd"
 icp_version = "2.1.0.1"
+icp_admin_password = "myadmin"
+
+enable_federation = "true"
 
 boot_cores= "8"
 boot_memory = "16384"
@@ -34,8 +37,6 @@ worker_disk = ["100"]
 worker_network = 1000
 
 enable_iptables = "true"
-
-icp_admin_password = "myadmin"
 
 
 

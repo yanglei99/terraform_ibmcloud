@@ -110,7 +110,11 @@ echo cluster_access_ip: \$master_access_ip  >> ./cluster/config.yaml
 echo proxy_access_ip: \$proxy_access_ip  >> ./cluster/config.yaml
 echo ansible_ssh_pass: \$1 >> ./cluster/config.yaml
 echo default_admin_password: \$2 >> ./cluster/config.yaml
-      
+
+if [ "$4" = "true" ]; then
+  echo federation_enabled: true  >> ./cluster/config.yaml 
+fi  
+
 echo \${PWD}/cluster/config.yaml content
 cat ./cluster/config.yaml
 
@@ -143,6 +147,7 @@ iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 iptables -A INPUT -p tcp -m tcp --dport 22 -j ACCEPT
 iptables -A INPUT -p tcp -m tcp --dport 53 --src 10.0.0.0/8 -j ACCEPT
 iptables -A INPUT -p udp -m udp --dport 53 --src 10.0.0.0/8 -j ACCEPT
+iptables -A INPUT -p tcp -m tcp --dport 30000:32767 -j ACCEPT
 ## kube_apiserver_port
 iptables -A INPUT -p tcp -m tcp --dport 8001 -j ACCEPT
 ## Docker registry on master

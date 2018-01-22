@@ -23,5 +23,9 @@ output "master-ip-private" {
 }
 
 output "ui" {
-  value = "UI URL is https://master_ip:8443 , default username/password is admin/admin"
+  value = "UI URL is https://master_ip:8443 , default username/password is admin/${var.icp_admin_password}"
+}
+
+output "kubeconfig" {
+  value = "/opt/ibm-cloud-private-ce-${var.icp_version}/cluster/conf/kubeconfig"
 }

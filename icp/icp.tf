@@ -287,7 +287,7 @@ resource "null_resource" "icp_deploy" {
     }
 
     provisioner "local-exec" {
-      command = "bash ./make-files.sh ${var.icp_version} ${ibm_compute_vm_instance.icp_bootstrap.ipv4_address_private} ${var.enable_iptables}"
+      command = "bash ./make-files.sh ${var.icp_version} ${ibm_compute_vm_instance.icp_bootstrap.ipv4_address_private} ${var.enable_iptables} ${var.enable_federation}"
     }
     
     provisioner "file" {

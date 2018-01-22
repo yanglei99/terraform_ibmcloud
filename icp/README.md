@@ -34,16 +34,27 @@ With [Acmeair Micro-Service](https://github.com/yanglei99/acmeair-nodejs/blob/ma
 	
 #### Configuration Details
 
-Reference [vars.tf](./vars.tf) for definitions.
+Reference [vars.tf](./vars.tf) for definitions. To open more ports on public IP, revise [make-files.sh](make-files.sh).
 
 * credentials
 * node resources and counts
 * iptable enablement
+* federation enablement
 * docker install or not
 * ...
 
-To open more ports on public IP, revise [make-files.sh](make-files.sh).
+#### Federation 
+
+reference [Manage Federation](https://www.ibm.com/support/knowledgecenter/en/SSBS6K_2.1.0/manage_cluster/manage_federation.html)
+
+For local `kubectl`, download kubeconfig from the location defined in output after enable vpn (as private IP is used). You will also need to download the key and crt file
+
+	scp -i do-key root@<bootstrap node>:/opt/.../cluster/conf/kubeconfig .
+	scp -i do-key root@<bootstrap node>:/opt/.../cluster/cfc-certs/kubecfg.* .
+	
+	kubectl --kubeconfig=kubeconfig --context=federation-cluster get clusters
 
 ### Known issues and workaround
 
 * Currently, the script only supports ICP CE. 
+

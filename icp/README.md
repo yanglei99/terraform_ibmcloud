@@ -13,8 +13,8 @@ You can use its specific count variable to control the number of master and work
 
 #### Verified 
 
-On:
-
+* Terraform: 0.9.8
+* Terraform IBM Provider: 0.7.0
 * ICP: 2.1.0.1 CE (Kubernetes 1.8.3). Only supports `master_count = 1`
 
 With [Acmeair Micro-Service](https://github.com/yanglei99/acmeair-nodejs/blob/master/document/k8s/acmeair-ms.yaml)

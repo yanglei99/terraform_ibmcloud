@@ -26,12 +26,11 @@ Generate a `do-key` keypair (with an empty passphrase):
 ### Data Center Platform
 
 * [ICP, IBM Cloud Private](icp/README.md). 
+* [Mesosphere DC/OS](dcos/README.md). 
 
-### Verified
+### Other Scenarios
 
-* Terraform: 0.9.8
-* Terraform IBM Provider: 0.7.0
-
+* [Compose and Container Service](compose/README.md). 
 
 ### Useful Terraform Command
 

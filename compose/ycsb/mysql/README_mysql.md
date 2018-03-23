@@ -27,7 +27,7 @@
 * Upload workload definition into Object Storage(S3) 
 * Upload mysql-connector-java jar into Object Storage(S3)
 * Revise workload json files with the right content
-* [Sample workload definition](workload-2-5k-4k.dat)
+* [Sample workload definition](workload-2-5k-5k.dat)
 
 ##### on Mesosphere DC/OS
 

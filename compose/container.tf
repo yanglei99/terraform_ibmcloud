@@ -36,11 +36,9 @@ resource "random_id" "name" {
 output "container_cluster-server_url" {
 
   value = "${ibm_container_cluster.container_cluster.server_url}"
-
 }
 
 output "container_cluster-worker_num" {
 
   value = "${ibm_container_cluster.container_cluster.worker_num}"
-
 }

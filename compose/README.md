@@ -1,6 +1,6 @@
 ## Compose Benchmark
 
-Terraform configuration and scripts for provisioning Compose DBaaS, Container service, then run Benchmark using Terraform.
+Terraform configuration and scripts for provisioning Compose DBaaS, Container service, then run Benchmark (i.e. YCSB) using Terraform.
 
 ### Cluster Components
 
@@ -13,7 +13,7 @@ Terraform configuration and scripts for provisioning Compose DBaaS, Container se
 * IBM Cloud Provider for Terraform : 0.7.0
 
 
-### To use:
+#### To Use:
 
 * Clone or download repo.
 
@@ -28,6 +28,11 @@ Terraform configuration and scripts for provisioning Compose DBaaS, Container se
 #### Configuration Details
 
 Reference [vars.tf](./vars.tf) for definitions. 
+
+
+### Run workload
+
+* [YCSB](ycsb/README.md)
 
 
 ### Known Issue and limitation

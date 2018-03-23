@@ -1,0 +1,30 @@
+{
+  "id": "ycsb-mysql-run",
+  "container": {
+    "docker": {
+      "image": "yanglei99/ycsb_s3fs",
+      "network": "HOST",
+      "privileged": true,
+      "parameters": [ ]
+    },
+	"volumes": []
+  },
+  "cpus": 1,
+  "mem": 1024,
+  "instances": 1 ,
+  "acceptedResourceRoles": ["slave_public"],
+  "uris": [],
+  "env": {
+	  "YCSB_S3FS_PASSWD":"YOUR KEY:YOUR SECRET",
+	  "YCSB_S3FS_URL":"http://s3-api.us-geo.objectstorage.softlayer.net",
+	  "YCSB_S3FS_MOUNT":"/ycsb/YCSB/s3fs",
+	  "YCSB_S3FS_BUCKET":"YOUR BUCKET",
+	  "YCSB_OP":"run",
+	  "YCSB_DB": "jdbc",
+	  "YCSB_WORKLOAD":"workloada",
+	  "YCSB_WORKLOAD_DATA":"mysql/workload/workload-2-5k-5k.dat",
+	  "YCSB_WORKLOAD_JAR":"mysql/jars/mysql-connector-java-5.1.40.jar",
+	  "YCSB_OUTPUT":"mysql/output",
+	  "YCSB_ADD_PROPERTIES": "-p db.user=admin -p db.passwd=YOUR_PASSWD -p db.url=jdbc:mysql://YOUR HOST/ycsb"
+  }
+} 

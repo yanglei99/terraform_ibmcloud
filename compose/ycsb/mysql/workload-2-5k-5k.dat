@@ -1,0 +1,4 @@
+db.driver=com.mysql.jdbc.Driver
+threadcount=2
+recordcount=5000
+operationcount=5000

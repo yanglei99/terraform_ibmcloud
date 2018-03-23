@@ -27,3 +27,10 @@ output "compose_service_instance-uri" {
   value = "${lookup(ibm_service_key.compose-service-instance-service-key.credentials,"uri")}"
 
 }
+
+
+output "compose_service_instance-uri_cli" {
+
+  value = "${lookup(ibm_service_key.compose-service-instance-service-key.credentials,"uri_cli")}"
+
+}

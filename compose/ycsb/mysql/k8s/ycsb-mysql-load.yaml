@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  labels:
+    name: ycsb-load
+  name: ycsb-load-controller
+spec:
+  replicas: 1
+  selector:
+    name: ycsb-load
+  template:
+    metadata:
+      labels:
+        name: ycsb-load
+    spec:
+      containers:
+      - image: yanglei99/ycsb_s3fs
+        name: ycsb-load
+        securityContext:
+          privileged: true
+        resources:
+          requests:
+            memory: 2Gi
+            cpu: 1
+          limits:
+            memory: 2Gi
+            cpu: 1
+        env:
+        - name: YCSB_S3FS_PASSWD
+          value: "YOUR KEY:YOUR SECRET"
+        - name: YCSB_S3FS_URL
+          value: "http://s3-api.us-geo.objectstorage.softlayer.net"
+        - name: YCSB_S3FS_MOUNT
+          value: "/ycsb/YCSB/s3fs"
+        - name: YCSB_S3FS_BUCKET
+          value: "YOUR BUCKET"
+        - name: YCSB_OP
+          value: "load"
+        - name: YCSB_DB
+          value: "jdbc"
+        - name: YCSB_WORKLOAD
+          value: "workloada"
+        - name: YCSB_WORKLOAD_DATA
+          value: "mysql/workload/workload-2-5k-5k.dat"
+        - name: YCSB_WORKLOAD_JAR
+          value: "mysql/jars/mysql-connector-java-5.1.40.jar"
+        - name: YCSB_OUTPUT
+          value: "mysql/output"
+        - name: YCSB_ADD_PROPERTIES
+          value: "-p db.user=admin -p db.passwd=YOUR_PASSWD -p db.url=jdbc:mysql://YOUR HOST/ycsb"
+          

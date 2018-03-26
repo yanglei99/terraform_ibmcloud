@@ -26,11 +26,14 @@
 
 * Upload workload definition into Object Storage(S3) 
 * Upload mysql-connector-java jar into Object Storage(S3)
-* Revise workload json files with the right content
 * [Sample workload definition](workload-2-5k-5k.dat)
 
 ##### on Mesosphere DC/OS
 
+Revise workload [json files](./marathon) with the right content
+
+    cd marathon
+    
 	// TO Load
 	curl -i -H 'Content-Type: application/json' -d@ycsb-mysql-load.json $marathonIp:8080/v2/apps
 		
@@ -39,7 +42,14 @@
 
 ##### on Kubernetes
 	
-	TBD
+    cd k8s
+    
+	// TO Load
+	kubectl apply -f ycsb-mysql-load.yaml
+		
+	// TO Run
+	kubectl apply -f ycsb-mysql-load.yaml
+
 	
 ### Known Issue
 	

@@ -1,6 +1,6 @@
 ## Compose Benchmark
 
-Terraform configuration and scripts for provisioning Compose DBaaS, Container service, then run Benchmark (i.e. YCSB) using Terraform.
+Terraform configuration and scripts for provisioning Compose DBaaS, Container service, and running Benchmark (i.e. YCSB).
 
 ### Cluster Components
 

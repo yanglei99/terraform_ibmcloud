@@ -1,0 +1,13 @@
+name: ycsb
+version: 0.1.0
+description: Run YCSB workload with integration of S3FS
+keywords:
+- ycsb
+- workload
+- Compose DBaaS
+- s3fs
+home: https://github.com/yanglei99/terraform_ibmcloud/tree/master/compose
+maintainers:
+- name: Yang Lei
+  email: yanglei@us.ibm.com
+engine: gotpl

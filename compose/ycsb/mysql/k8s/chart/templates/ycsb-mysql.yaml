@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name:  {{ template "ycsb.fullname" . }}-controller
+  labels:
+    name: {{ template "ycsb.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  replicas: {{ .Values.config.cluster_size }}
+  selector:
+    name: {{ template "ycsb.fullname" . }}
+  template:
+    metadata:
+      labels:
+        name: {{ template "ycsb.fullname" . }}
+    spec:
+      containers:
+      - image: "{{ .Values.image.repo }}:{{ .Values.image.tag }}"
+        name: {{ template "ycsb.fullname" . }}
+        imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+        securityContext:
+          privileged: true
+        resources:
+{{ toYaml .Values.resources | indent 10 }}
+        env:
+{{ toYaml .Values.environments | indent 8 }}
+

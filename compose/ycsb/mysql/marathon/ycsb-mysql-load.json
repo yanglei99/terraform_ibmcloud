@@ -10,7 +10,7 @@
 	"volumes": []
   },
   "cpus": 1,
-  "mem": 1024,
+  "mem": 2048,
   "instances": 1 ,
   "acceptedResourceRoles": ["slave_public"],
   "uris": [],

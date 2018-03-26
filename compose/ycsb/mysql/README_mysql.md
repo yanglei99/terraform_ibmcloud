@@ -40,7 +40,7 @@ Revise workload [json files](./marathon) with the right content
 	// TO Run
 	curl -i -H 'Content-Type: application/json' -d@ycsb-mysql-run.json $marathonIp:8080/v2/apps
 
-##### on Kubernetes
+##### on Kubernetes using kubectl
 	
     cd k8s
     
@@ -50,6 +50,9 @@ Revise workload [json files](./marathon) with the right content
 	// TO Run
 	kubectl apply -f ycsb-mysql-load.yaml
 
+##### on Kubernetes using helm chart
+
+[helm chart](k8s/chart)
 	
 ### Known Issue
 	

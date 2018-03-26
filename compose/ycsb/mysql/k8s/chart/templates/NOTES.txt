@@ -1,0 +1,3 @@
+
+To tail the logs for the YCSB benchmark pod run the following:
+- kubectl logs -f --namespace {{ .Release.Namespace }} $(kubectl get pods --namespace {{ .Release.Namespace }} -l name={{ template "ycsb.fullname" . }} -o jsonpath='{ .items[0].metadata.name }')

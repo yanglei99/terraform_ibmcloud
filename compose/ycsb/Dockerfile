@@ -79,6 +79,7 @@ RUN chmod +x *.sh
 ENV YCSB_OP load
 ENV YCSB_DB jdbc
 ENV YCSB_WORKLOAD workloada
+ENV YCSB_THREAD_COUNT 1
 #ENV YCSB_S3FS_PASSWD key:secret
 #ENV YCSB_S3FS_URL http://s3-api.us-geo.objectstorage.softlayer.net
 #ENV YCSB_S3FS_MOUNT /tmp/s3fs

@@ -49,6 +49,11 @@ Revise workload [json files](./marathon) with the right content
 		
 	// TO Run
 	kubectl apply -f ycsb-mysql-load.yaml
+	
+	// To look at logs
+	kubectl logs -f  $(kubectl get pods -l name=ycsb-run -o jsonpath='{ .items[0].metadata.name }')
+	
+	
 
 ##### on Kubernetes using helm chart
 

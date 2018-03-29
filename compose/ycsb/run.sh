@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "hostname: $HOSTNAME"
+
 echo get YCSB environment
 
 env | grep YCSB > environment.dat
@@ -20,13 +22,13 @@ fi
 
 echo begin $YCSB_OP $YCSB_DB for workload: $YCSB_WORKLOAD from: $input_dir
 
-bin/ycsb $YCSB_OP $YCSB_DB -P workloads/$YCSB_WORKLOAD -P $input_dir/$YCSB_WORKLOAD_DATA -cp $input_dir/$YCSB_WORKLOAD_JAR $YCSB_ADD_PROPERTIES > transactions.dat
+bin/ycsb $YCSB_OP $YCSB_DB -P workloads/$YCSB_WORKLOAD -P $input_dir/$YCSB_WORKLOAD_DATA -cp $input_dir/$YCSB_WORKLOAD_JAR $YCSB_ADD_PROPERTIES -p exportfile=transactions.dat -s -threads $YCSB_THREAD_COUNT
 
 cat  transactions.dat
 
 if [ "$YCSB_S3FS_MOUNT" != "" ] ; then
 
-	output_dir=$YCSB_S3FS_MOUNT/$YCSB_OUTPUT/$(date +%d_%m_%Y_%H_%M-%S-%s)
+	output_dir=$YCSB_S3FS_MOUNT/$YCSB_OUTPUT/$(date +%Y_%m_%d_%H_%M)/$HOSTNAME
 	
 	echo copy run information to : $output_dir
 
@@ -34,7 +36,7 @@ if [ "$YCSB_S3FS_MOUNT" != "" ] ; then
 
 	cp *.dat $output_dir
 
-	cp $YCSB_S3FS_MOUNT/$YCSB_WORKLOAD_DATA $output_dir
+	cp $YCSB_S3FS_MOUNT/$YCSB_WORKLOAD_DATA $output_dir/workload.dat
 
 fi
 

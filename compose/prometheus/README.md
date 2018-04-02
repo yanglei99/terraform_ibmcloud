@@ -28,9 +28,11 @@
 ##### MySQL
 
 [Reference MySQL Exporter](https://github.com/prometheus/mysqld_exporter)
+
 [Reference Grafana Chart](https://github.com/kubernetes/charts/tree/master/stable/grafana)
 
 [mysql-exporter.yaml](mysql-exporter.yaml)
+
 [mysql-exporter prometheus yaml](value-mysql-exporter.yaml)
 
 	// Enable MySQL exporter

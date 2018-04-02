@@ -1,0 +1,100 @@
+alertmanager:
+  extraArgs:
+    log.level: debug
+  ingress:
+    enabled: false
+  persistentVolume:
+    ## Prometheus is not used for long term storage
+    enabled: false
+server:
+  ingress:
+    enabled: false
+  persistentVolume:
+    enabled: false
+
+
+## Prometheus server ConfigMap entries
+serverFiles:
+## alert rules ##
+  alerts:
+    groups:
+    - name: defaults
+      rules:
+      - alert: HighCPU
+        expr: ((sum(node_cpu{mode=~"user|nice|system|irq|softirq|steal|idle|iowait"})
+          BY (instance, job)) - (sum(node_cpu{mode=~"idle|iowait"}) BY (instance, job)))
+          / (sum(node_cpu{mode=~"user|nice|system|irq|softirq|steal|idle|iowait"}) BY
+          (instance, job)) * 100 > 95
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          description: This machine  has really high CPU usage for over 60 seconds
+          summary: High CPU Usage
+      - alert: PendingPods
+        expr: (sum(kube_pod_status_phase{phase="Pending"}) BY (pod)) > 0
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          description: Pod has been in pending state for more than 5 minutes
+          summary: Pod has been in pending state for more than 5 minutes
+      - alert: PodsNotReady
+        expr: (sum(kube_pod_status_ready{condition="false"}) BY (pod)) > 0
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          description: Pod has has not passed readiness checks for more than 5 minutes
+          summary: Pod has has not passed readiness checks for for more than 5 minutes
+
+## alertmanager ConfigMap entries
+##
+alertmanagerFiles:
+  alertmanager.yml:
+    global:
+      slack_api_url: 'YOUR API URL'
+    # The root route on which each incoming alert enters.
+    route:
+      # The root route must not have any matchers as it is the entry point for
+      # all alerts. It needs to have a receiver configured so alerts that do not
+      # match any of the sub-routes are sent to someone.
+      receiver: 'slack-notifications'
+      # The labels by which incoming alerts are grouped together. For example,
+      # multiple alerts coming in for cluster=A and alertname=LatencyHigh would
+      # be batched into a single group.
+      # group_by: ['alertname']
+      group_by: ['clustername']
+      # When a new group of alerts is created by an incoming alert, wait at
+      # least 'group_wait' to send the initial notification.
+      # This way ensures that you get multiple alerts for the same group that start
+      # firing shortly after another are batched together on the first
+      # notification.
+      group_wait: 10s
+      # When the first notification was sent, wait 'group_interval' to send a batch
+      # of new alerts that started firing for that group.
+      group_interval: 5m
+      # If an alert has successfully been sent, wait 'repeat_interval' to
+      # resend them.
+      repeat_interval: 3h
+      # All the above attributes are inherited by all child routes and can
+      # overwritten on each.
+    # Inhibition rules allow to mute a set of alerts given that another alert is
+    # firing.
+    # We use this to mute any warning-level notifications if the same alert is
+    # already critical.
+    inhibit_rules:
+    - source_match:
+        severity: 'critical'
+      target_match:
+        severity: 'warning'
+      # Apply inhibition if the alertname is the same.
+      # equal: ['alertname']
+      equal: ['clustername']
+
+    receivers:
+    - name: 'slack-notifications'
+      slack_configs:
+      - api_url: 'YOUR API URL'
+        channel: '#compose-performance'
+        text: 'Alert from K8s cluster: {{ range .Alerts }}{{ .Annotations.summary }} {{ .Annotations.description }}\n{{ end }}'

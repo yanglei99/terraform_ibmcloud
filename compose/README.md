@@ -35,6 +35,10 @@ Reference [vars.tf](./vars.tf) for definitions.
 * [YCSB](ycsb/README.md)
 
 
+### QoS
+
+* [Monitoring and Alert through Prometheus](prometheus/README.md) 
+
 ### Known Issue and limitation
 
 * Container cluster worker number (3) is hard-coded in [container.tf](container.tf)

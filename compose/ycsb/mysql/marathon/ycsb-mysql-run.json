@@ -25,6 +25,6 @@
 	  "YCSB_WORKLOAD_DATA":"mysql/workload/workload-2-5k-5k.dat",
 	  "YCSB_WORKLOAD_JAR":"mysql/jars/mysql-connector-java-5.1.40.jar",
 	  "YCSB_OUTPUT":"mysql/output",
-	  "YCSB_ADD_PROPERTIES": "-p db.user=admin -p db.passwd=YOUR_PASSWD -p db.url=jdbc:mysql://YOUR HOST/ycsb"
+	  "YCSB_ADD_PROPERTIES": "-p db.user=admin -p db.passwd=YOUR_PASSWD -p db.url=jdbc:mysql://YOUR_HOST:YOUR_PORT/ycsb"
   }
 } 

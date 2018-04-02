@@ -47,4 +47,4 @@ spec:
         - name: YCSB_OUTPUT
           value: "mysql/output"
         - name: YCSB_ADD_PROPERTIES
-          value: "-p db.user=admin -p db.passwd=YOUR_PASSWD -p db.url=jdbc:mysql://YOUR HOST/ycsb"
+          value: "-p db.user=admin -p db.passwd=YOUR_PASSWD -p db.url=jdbc:mysql://YOUR_HOST:YOUR_PORT/ycsb"

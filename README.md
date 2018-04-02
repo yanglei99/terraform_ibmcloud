@@ -30,7 +30,7 @@ Generate a `do-key` keypair (with an empty passphrase):
 
 ### Other Scenarios
 
-* [Compose and Container Service](compose/README.md). 
+* [Compose DBaaS, Container Service and Benchmarking](compose/README.md). 
 
 ### Useful Terraform Command
 

@@ -1,6 +1,6 @@
 ## Compose Benchmark
 
-Terraform configuration and scripts for provisioning Compose DBaaS, Container service, and running Benchmark (i.e. YCSB).
+Terraform configuration and scripts for provisioning Compose DBaaS, Container service, and running Benchmark (i.e. YCSB, DBT2).
 
 ### Cluster Components
 
@@ -33,6 +33,7 @@ Reference [vars.tf](./vars.tf) for definitions.
 ### Run workload
 
 * [YCSB](ycsb/README.md)
+* [DBT2](dbt2/README.md)
 
 
 ### QoS

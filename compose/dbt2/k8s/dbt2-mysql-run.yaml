@@ -1,0 +1,57 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  labels:
+    name: dbt2-run
+  name: dbt2-run-controller
+spec:
+  replicas: 1
+  selector:
+    name: dbt2-run
+  template:
+    metadata:
+      labels:
+        name: dbt2-run
+    spec:
+      containers:
+      - image: yanglei99/dbt2_s3fs
+        name: dbt2-run
+        imagePullPolicy: Always
+        securityContext:
+          privileged: true
+        resources:
+          requests:
+            memory: 6Gi
+            cpu: 3
+          limits:
+            memory: 6Gi
+            cpu: 3
+        env:
+        - name: DBT2_S3FS_PASSWD
+          value: "YOUR KEY:YOUR SECRET"
+        - name: DBT2_S3FS_URL
+          value: "http://s3-api.us-geo.objectstorage.softlayer.net"
+        - name: DBT2_S3FS_MOUNT
+          value: "/dbt2/DBT2/s3fs"
+        - name: DBT2_S3FS_BUCKET
+          value: "YOUR BUCKET"
+        - name: DBT2_OP
+          value: "run"
+        - name: DBT2_WAREHOUSE
+          value: "10"
+        - name: DBT2_CONNECTION
+          value: "20"
+        - name: DBT2_TIME
+          value: "300"
+        - name: DBT2_MYSQL_DATABASE
+          value: "mydbt2"
+        - name: DBT2_MYSQL_HOST
+          value: "YOUR_MYSQL_HOST"
+        - name: DBT2_MYSQL_PORT
+          value: "38104"
+        - name: DBT2_MYSQL_USER
+          value: "admin"
+        - name: DBT2_MYSQL_PASSWORD 
+          value: "YOUR_PASSWD"
+        - name: DBT2_OUTPUT
+          value: "dbt2/output"

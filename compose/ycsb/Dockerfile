@@ -89,6 +89,8 @@ ENV YCSB_THREAD_COUNT 1
 #ENV YCSB_OUTPUT mysql/output
 #ENV YCSB_ADD_PROPERTIES -p db.url=jdbc:mysql://YOUR_HOST:3306/ycsb
 
+#ENV YCSB_NOTES
+
 VOLUME /ycsb/YCSB
 
 CMD ["./run.sh"]

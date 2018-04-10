@@ -7,10 +7,16 @@ echo get YCSB environment
 env | grep YCSB > environment.dat
 cat environment.dat
 
+echo "YCSB_RUN_DATE=$(date +%Y-%m-%d_%H:%M:%S)" >> environment.dat
+
+date_in_dir=$(date +%Y_%m_%d_%H_%M)
+
 input_dir=$(pwd)
+output_dir=$(pwd)
 
 if [ "$YCSB_S3FS_MOUNT" != "" ] ; then
     input_dir=$YCSB_S3FS_MOUNT
+    output_dir=$YCSB_S3FS_MOUNT
     
 	echo mount $input_dir to s3 
 	
@@ -20,7 +26,9 @@ if [ "$YCSB_S3FS_MOUNT" != "" ] ; then
 	s3fs $YCSB_S3FS_BUCKET $YCSB_S3FS_MOUNT -o passwd_file=~/.passwd-s3fs -o url=$YCSB_S3FS_URL -o use_path_request_style
 fi
 
-echo begin $YCSB_OP $YCSB_DB for workload: $YCSB_WORKLOAD from: $input_dir
+output_dir=$output_dir/$YCSB_OUTPUT/$date_in_dir/$HOSTNAME
+
+echo begin $YCSB_OP $YCSB_DB for workload: $YCSB_WORKLOAD from: $input_dir to: $output_dir
 
 bin/ycsb $YCSB_OP $YCSB_DB -P workloads/$YCSB_WORKLOAD -P $input_dir/$YCSB_WORKLOAD_DATA -cp $input_dir/$YCSB_WORKLOAD_JAR $YCSB_ADD_PROPERTIES -p exportfile=transactions.dat -s -threads $YCSB_THREAD_COUNT
 
@@ -28,8 +36,6 @@ cat  transactions.dat
 
 if [ "$YCSB_S3FS_MOUNT" != "" ] ; then
 
-	output_dir=$YCSB_S3FS_MOUNT/$YCSB_OUTPUT/$(date +%Y_%m_%d_%H_%M)/$HOSTNAME
-	
 	echo copy run information to : $output_dir
 
 	mkdir -p $output_dir

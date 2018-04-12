@@ -45,6 +45,7 @@ Reference [vars.tf](./vars.tf) for definitions.
 
 * [YCSB: transform raw data in Object Storage(s3) to performance metrics in Cloudant](analytics/ycsb_analytics-s3-cloudant.ipynb)
 * [YCSB: using Spark Streaming monitor Object Storage(s3) and transform raw data to performance metrics in Cloudant](analytics/ycsb_analytics-s3-stream-cloudant.ipynb)
+* [YCSB: performance report using performance metrics in Cloudant](analytics/ycsb_analytics-report-cloudant.ipynb)
 
 
 ### Known Issue and limitation

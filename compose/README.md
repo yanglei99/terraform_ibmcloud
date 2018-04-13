@@ -47,6 +47,13 @@ Reference [vars.tf](./vars.tf) for definitions.
 * [YCSB: using Spark Streaming monitor Object Storage(s3) and transform raw data to performance metrics in Cloudant](analytics/ycsb_analytics-s3-stream-cloudant.ipynb)
 * [YCSB: performance report using performance metrics in Cloudant](analytics/ycsb_analytics-report-cloudant.ipynb)
 
+#### Verified through Local pyspark with jupyter
+
+	export PYSPARK_DRIVER_PYTHON=jupyter
+	export PYSPARK_DRIVER_PYTHON_OPTS='notebook'
+	export SPARK_HOME=YOUR_SPARK_LOCATION
+	
+	pyspark --packages org.apache.bahir:spark-sql-cloudant_2.11:2.2.0,com.ibm.stocator:stocator:1.0.17
 
 ### Known Issue and limitation
 

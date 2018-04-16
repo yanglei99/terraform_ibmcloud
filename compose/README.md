@@ -34,6 +34,7 @@ Reference [vars.tf](./vars.tf) for definitions.
 
 * [YCSB](ycsb/README.md)
 * [DBT2](dbt2/README.md)
+* [Cassandra Stress](cassandra-stress/README.md)
 
 
 ### QoS

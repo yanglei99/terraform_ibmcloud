@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  labels:
+    name: cs-run
+  name: cs-run-controller
+spec:
+  replicas: 1
+  selector:
+    name: cs-run
+  template:
+    metadata:
+      labels:
+        name: cs-run
+    spec:
+      containers:
+      - image: yanglei99/cs_s3fs
+        name: cs-run
+        imagePullPolicy: Always
+        securityContext:
+          privileged: true
+        resources:
+          requests:
+            memory: 2Gi
+            cpu: 1
+          limits:
+            memory: 2Gi
+            cpu: 1
+        env:
+        - name: CS_S3FS_PASSWD
+          value: "YOUR KEY:YOUR SECRET"
+        - name: CS_S3FS_URL
+          value: "http://s3-api.us-geo.objectstorage.softlayer.net"
+        - name: CS_S3FS_MOUNT
+          value: "/cs/s3fs"
+        - name: CS_S3FS_BUCKET
+          value: "YOUR BUCKET"
+        - name: CS_OUTPUT
+          value: "cs/scylladb/output"
+        - name: CS_OP
+          value: "read"
+        - name: CS_OP_NUMBER
+          value: "1000"
+        - name: CS_THREAD_COUNT
+          value: "20"
+        - name: CS_NODES
+            value: "YOUR_NODES"

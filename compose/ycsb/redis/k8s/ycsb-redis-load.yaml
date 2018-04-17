@@ -1,0 +1,50 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  labels:
+    name: ycsb-load
+  name: ycsb-load-controller
+spec:
+  replicas: 1
+  selector:
+    name: ycsb-load
+  template:
+    metadata:
+      labels:
+        name: ycsb-load
+    spec:
+      containers:
+      - image: yanglei99/ycsb_s3fs
+        name: ycsb-load
+        securityContext:
+          privileged: true
+        resources:
+          requests:
+            memory: 2Gi
+            cpu: 1
+          limits:
+            memory: 2Gi
+            cpu: 1
+        env:
+        - name: YCSB_S3FS_PASSWD
+          value: "YOUR KEY:YOUR SECRET"
+        - name: YCSB_S3FS_URL
+          value: "http://s3-api.us-geo.objectstorage.softlayer.net"
+        - name: YCSB_S3FS_MOUNT
+          value: "/ycsb/YCSB/s3fs"
+        - name: YCSB_S3FS_BUCKET
+          value: "YOUR BUCKET"
+        - name: YCSB_OP
+          value: "load"
+        - name: YCSB_DB
+          value: "redis"
+        - name: YCSB_WORKLOAD
+          value: "workloada"
+        - name: YCSB_THREAD_COUNT
+          value: "1"
+        - name: YCSB_WORKLOAD_DATA
+          value: "redis/workload/workload-5k-5k.dat"
+        - name: YCSB_OUTPUT
+          value: "redis/output"
+        - name: YCSB_ADD_PROPERTIES
+          value: "-p redis.host=YOUR_HOST -p redis.port=6379"

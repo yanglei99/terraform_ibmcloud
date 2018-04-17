@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  labels:
+    name: ycsb-run
+  name: ycsb-run-controller
+spec:
+  replicas: 1
+  selector:
+    name: ycsb-run
+  template:
+    metadata:
+      labels:
+        name: ycsb-run
+    spec:
+      containers:
+      - image: yanglei99/ycsb_s3fs
+        name: ycsb-run
+        imagePullPolicy: Always
+        securityContext:
+          privileged: true
+        resources:
+          requests:
+            memory: 2Gi
+            cpu: 1
+          limits:
+            memory: 2Gi
+            cpu: 1
+        env:
+        - name: YCSB_S3FS_PASSWD
+          value: "YOUR KEY:YOUR SECRET"
+        - name: YCSB_S3FS_URL
+          value: "http://s3-api.us-geo.objectstorage.softlayer.net"
+        - name: YCSB_S3FS_MOUNT
+          value: "/ycsb/YCSB/s3fs"
+        - name: YCSB_S3FS_BUCKET
+          value: "YOUR BUCKET"
+        - name: YCSB_OP
+          value: "run"
+        - name: YCSB_DB
+          value: "redis"
+        - name: YCSB_WORKLOAD
+          value: "workloada"
+        - name: YCSB_THREAD_COUNT
+          value: "10"
+        - name: YCSB_WORKLOAD_DATA
+          value: "redis/workload/workload-5k-5k.dat"
+        - name: YCSB_OUTPUT
+          value: "mysql/output"
+        - name: YCSB_ADD_PROPERTIES
+          value: "-p redis.host=YOUR_HOST -p redis.port=6379"
+        - name: YCSB_NOTES
+          value: "Redis Docker"

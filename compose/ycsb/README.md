@@ -17,6 +17,7 @@ Integrated with Object Storage S3 for workload definition and results collection
 ### Run Details
 
 * [MySQL](mysql/README_mysql.md) 
+* [Redis](redis/README_redis.md) 
 
 
 ### Known Issue

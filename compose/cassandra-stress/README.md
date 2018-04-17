@@ -36,6 +36,7 @@ Integrated with Object Storage S3 for results collection.
 	kubectl delete rc/cs-run-controller -n scylladb
 	
 
-### Known Issue
+### Known issue and limitation
 
+* Only verified with [ScyallDB cluster hosted on Kubernetes](https://github.com/yanglei99/kubernetes_ibmcloud/tree/master/charts/scylladb). 
 
